@@ -2,6 +2,17 @@ import React, { Component } from "react";
 
 const MAX_PIZZAS = 5;
 
+const eatPizza = (state, props) => {
+  const { pizzas } = state;
+  if (pizzas < MAX_PIZZAS) {
+    return {
+      pizzas: pizzas + 1
+    };
+  } else {
+    return null;
+  }
+};
+
 class Controlled extends Component {
   state = {
     pizzas: 0
@@ -15,14 +26,7 @@ class Controlled extends Component {
     );
   }
   _handleClick = () => {
-    const { pizzas } = this.state;
-    if (pizzas < MAX_PIZZAS) {
-      this.setState({
-        pizzas: pizzas + 1
-      });
-    } else {
-      return;
-    }
+    this.setState(eatPizza);
   };
 }
 
