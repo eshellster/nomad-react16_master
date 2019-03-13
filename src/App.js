@@ -1,5 +1,47 @@
+import React, { Component } from "react";
+
+const MAX_PIZZAS = 5;
+
+class Controlled extends Component {
+  state = {
+    pizzas: 0
+  };
+  render() {
+    const { pizzas } = this.state;
+    return (
+      <button onClick={this._handleClick}>{`I have aten ${pizzas} ${
+        pizzas === 1 ? "pizza" : "pizzas"
+      }`}</button>
+    );
+  }
+  _handleClick = () => {
+    const { pizzas } = this.state;
+    if (pizzas < MAX_PIZZAS) {
+      this.setState({
+        pizzas: pizzas + 1
+      });
+    } else {
+      return;
+    }
+  };
+}
+
+class App extends Component {
+  render() {
+    return <Controlled />;
+  }
+}
+
+export default App;
+
+/*
 import React, { Component, Fragment } from 'react';
 import { createPortal } from "react-dom";
+
+
+
+
+
 
 
 const BoundaryHOC = ProtectedComponet => class Boundary extends Component {
@@ -73,3 +115,4 @@ class App extends Component {
 }
 
 export default  BoundaryHOC(App);
+*/
